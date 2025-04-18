@@ -1,12 +1,120 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ejemplo de Placeholder</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEVOPS: PRACTICA FORMATIVA OBLIGATORIA 1</title>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+          background-color: #f5f5f5;
+          color: #333;
+        }
+        header {
+          background-color: #004080;
+          color: #fff;
+          padding: 20px;
+          text-align: center;
+        }
+        section {
+          padding: 20px;
+          margin: 10px;
+          background-color: #fff;
+          border-radius: 8px;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        footer {
+          background-color: #004080;
+          color: #fff;
+          text-align: center;
+          padding: 10px;
+          position: fixed;
+          bottom: 0;
+          width: 100%;
+        }
+        /* Estilos adicionales para el formulario */
+        form {
+            margin-top: 20px;
+        }
+        form div {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 30%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #004080;
+            color: #fff;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #003066;
+        }
+    </style>
 </head>
 <body>
-<h1>primer html</h1>
-<h2>PRUEBA GIT</h2>
+    <header>
+        <h1>Práctica Formativa 1 forzado de conflicto</h1>        
+    </header>
+      
+    <section>
+        <h2>Datos Personales</h2>
+        <form id="formLogin" name="formLogin"  action="#" method="post">
+            <div>
+                <label for="user">Nombre de Usuario:</label>
+                <input type="text" id="user" name="user" required>
+            </div>
+            <div>
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div>
+                <button type="submit">Acceder</button>
+            </div>
+        </form>
+    </section>
+      
+    <footer>
+        <p>Seminario de Actualización DevOps</p>
+    </footer>
+
 </body>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
+<script>
+$('#formLogin').on('submit', function(e) {
+    e.preventDefault(); 
+
+    $.ajax({
+    url: 'procesar-datos.php',  
+    type: 'POST',
+    data: $(this).serialize(),  
+    dataType: 'json',
+    success: function(respuesta) {
+        $('#respuesta').text(respuesta.mensaje);
+    },
+    error: function(xhr, status, error) {
+        $('#respuesta').text('Error en la petición: ' + error);
+    }
+    });
+});
+</script>
+
 </html>
